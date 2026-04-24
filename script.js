@@ -1,30 +1,41 @@
-// ================= SHOW FUNCTIONS =================
+// ===== SHOW FUNCTIONS =====
+
+function hideAll() {
+    document.getElementById("bisectionBox").style.display = "none";
+    document.getElementById("falseBox").style.display = "none";
+    document.getElementById("fixedBox").style.display = "none";
+    document.getElementById("newtonBox").style.display = "none";
+}
 
 function showBisection() {
+    hideAll();
     document.getElementById("bisectionBox").style.display = "block";
 }
 
 function showFalsePosition() {
+    hideAll();
     document.getElementById("falseBox").style.display = "block";
 }
 
 function showFixedPoint() {
+    hideAll();
     document.getElementById("fixedBox").style.display = "block";
 }
 
 function showNewton() {
+    hideAll();
     document.getElementById("newtonBox").style.display = "block";
 }
 
-// ================= BISECTION =================
+// ===== BISECTION =====
 
 function solveBisection() {
-    let expr = document.getElementById("fx").value.trim();
+    let expr = fx.value;
     let xl = parseFloat(document.getElementById("xl").value);
     let xu = parseFloat(document.getElementById("xu").value);
 
     if (!expr || isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result").innerText = "Error in input";
+        result.innerText = "Error";
         return;
     }
 
@@ -36,25 +47,22 @@ function solveBisection() {
         let fxl = eval(expr.replace(/x/g, xl));
         let fxr = eval(expr.replace(/x/g, xr));
 
-        if (fxl * fxr < 0) {
-            xu = xr;
-        } else {
-            xl = xr;
-        }
+        if (fxl * fxr < 0) xu = xr;
+        else xl = xr;
     }
 
-    document.getElementById("result").innerText = "Root = " + xr;
+    result.innerText = "Root = " + xr;
 }
 
-// ================= FALSE POSITION =================
+// ===== FALSE POSITION =====
 
 function solveFalsePosition() {
-    let expr = document.getElementById("fx2").value.trim();
-    let xl = parseFloat(document.getElementById("xl2").value);
-    let xu = parseFloat(document.getElementById("xu2").value);
+    let expr = fx2.value;
+    let xl = parseFloat(xl2.value);
+    let xu = parseFloat(xu2.value);
 
     if (!expr || isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result2").innerText = "Error in input";
+        result2.innerText = "Error";
         return;
     }
 
@@ -68,58 +76,49 @@ function solveFalsePosition() {
 
         let fxr = eval(expr.replace(/x/g, xr));
 
-        if (fxl * fxr < 0) {
-            xu = xr;
-        } else {
-            xl = xr;
-        }
+        if (fxl * fxr < 0) xu = xr;
+        else xl = xr;
     }
 
-    document.getElementById("result2").innerText = "Root = " + xr;
+    result2.innerText = "Root = " + xr;
 }
 
-// ================= FIXED POINT =================
+// ===== FIXED POINT =====
 
 function solveFixedPoint() {
-    let expr = document.getElementById("fx3").value.trim();
-    let x = parseFloat(document.getElementById("x0").value);
+    let expr = fx3.value;
+    let x = parseFloat(x0.value);
 
     if (!expr || isNaN(x)) {
-        document.getElementById("result3").innerText = "Error in input";
+        result3.innerText = "Error";
         return;
     }
-
-    let next;
 
     for (let i = 0; i < 20; i++) {
-        next = eval(expr.replace(/x/g, x));
-        x = next;
+        x = eval(expr.replace(/x/g, x));
     }
 
-    document.getElementById("result3").innerText = "Root = " + x;
+    result3.innerText = "Root = " + x;
 }
 
-// ================= NEWTON =================
+// ===== NEWTON =====
 
 function solveNewton() {
-    let fexpr = document.getElementById("fx4").value.trim();
-    let dfexpr = document.getElementById("dfx4").value.trim();
-    let x = parseFloat(document.getElementById("x0n").value);
+    let fexpr = fx4.value;
+    let dfexpr = dfx4.value;
+    let x = parseFloat(x0n.value);
 
     if (!fexpr || !dfexpr || isNaN(x)) {
-        document.getElementById("result4").innerText = "Error in input";
+        result4.innerText = "Error";
         return;
     }
-
-    let next;
 
     for (let i = 0; i < 20; i++) {
         let fx = eval(fexpr.replace(/x/g, x));
         let dfx = eval(dfexpr.replace(/x/g, x));
 
-        next = x - (fx / dfx);
-        x = next;
+        x = x - (fx / dfx);
     }
 
-    document.getElementById("result4").innerText = "Root = " + x;
+    result4.innerText = "Root = " + x;
 }
