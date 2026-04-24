@@ -8,17 +8,20 @@
 
 <h1>Numerical Methods</h1>
 
-<!-- Buttons -->
-<button onclick="showBisection()">Bisection</button>
-<button onclick="showFalsePosition()">False Position</button>
-<button onclick="showNewton()">Newton</button>
-<button onclick="showSecant()">Secant</button>
-<button onclick="showFixed()">Fixed Point</button>
+<div class="buttons">
+    <button onclick="showBisection()">Bisection</button>
+    <button onclick="showFalsePosition()">False Position</button>
+    <button onclick="showNewton()">Newton</button>
+    <button onclick="showSecant()">Secant</button>
+    <button onclick="showFixed()">Fixed Point</button>
+
+    <button onclick="location.href='linear.html'">Linear Methods</button>
+    <button onclick="location.href='opt.html'">Optimization</button>
+</div>
 
 <hr>
 
-<!-- Bisection -->
-<div id="bisectionBox" style="display:none;">
+<div id="bisectionBox" class="method-box" style="display:none;">
     <h2>Bisection</h2>
     <input id="fx" placeholder="f(x)">
     <input id="xl" placeholder="xl">
@@ -27,41 +30,37 @@
     <p id="result"></p>
 </div>
 
-<!-- False Position -->
-<div id="falseBox" style="display:none;">
+<div id="falseBox" class="method-box" style="display:none;">
     <h2>False Position</h2>
-    <input id="fx2" placeholder="f(x)">
-    <input id="xl2" placeholder="xl">
-    <input id="xu2" placeholder="xu">
+    <input id="fx2">
+    <input id="xl2">
+    <input id="xu2">
     <button onclick="solveFalsePosition()">Solve</button>
     <p id="result2"></p>
 </div>
 
-<!-- Newton -->
-<div id="newtonBox" style="display:none;">
+<div id="newtonBox" class="method-box" style="display:none;">
     <h2>Newton</h2>
-    <input id="fx3" placeholder="f(x)">
-    <input id="dfx" placeholder="f'(x)">
-    <input id="x0n" placeholder="x0">
+    <input id="fx3">
+    <input id="dfx">
+    <input id="x0n">
     <button onclick="solveNewton()">Solve</button>
     <p id="result3"></p>
 </div>
 
-<!-- Secant -->
-<div id="secantBox" style="display:none;">
+<div id="secantBox" class="method-box" style="display:none;">
     <h2>Secant</h2>
-    <input id="fx5" placeholder="f(x)">
-    <input id="x0" placeholder="x0">
-    <input id="x1" placeholder="x1">
+    <input id="fx5">
+    <input id="x0">
+    <input id="x1">
     <button onclick="solveSecant()">Solve</button>
     <p id="result5"></p>
 </div>
 
-<!-- Fixed Point -->
-<div id="fixedBox" style="display:none;">
+<div id="fixedBox" class="method-box" style="display:none;">
     <h2>Fixed Point</h2>
-    <input id="gx" placeholder="g(x)">
-    <input id="x0f" placeholder="x0">
+    <input id="gx">
+    <input id="x0f">
     <button onclick="solveFixed()">Solve</button>
     <p id="result4"></p>
 </div>
