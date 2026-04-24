@@ -5,8 +5,8 @@ function hideAll() {
     document.getElementById("falseBox").style.display = "none";
     document.getElementById("fixedBox").style.display = "none";
     document.getElementById("newtonBox").style.display = "none";
+    document.getElementById("secantBox").style.display = "none";
 }
-
 function showBisection() {
     hideAll();
     document.getElementById("bisectionBox").style.display = "block";
