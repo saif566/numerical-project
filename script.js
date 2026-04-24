@@ -1,12 +1,11 @@
-// ================= SHOW / HIDE =================
-
+// ================= SHOW FUNCTIONS =================
 function hideAll() {
     document.getElementById("bisectionBox").style.display = "none";
     document.getElementById("falseBox").style.display = "none";
-    document.getElementById("fixedBox").style.display = "none";
     document.getElementById("newtonBox").style.display = "none";
     document.getElementById("secantBox").style.display = "none";
 }
+
 function showBisection() {
     hideAll();
     document.getElementById("bisectionBox").style.display = "block";
@@ -17,29 +16,30 @@ function showFalsePosition() {
     document.getElementById("falseBox").style.display = "block";
 }
 
-function showFixedPoint() {
-    hideAll();
-    document.getElementById("fixedBox").style.display = "block";
-}
-
 function showNewton() {
     hideAll();
     document.getElementById("newtonBox").style.display = "block";
 }
+
 function showSecant() {
     hideAll();
     document.getElementById("secantBox").style.display = "block";
 }
 
-// ================= BISECTION =================
+// ================= SAFE EVAL =================
+function calc(expr, x) {
+    return eval(expr.replace(/x/g, "(" + x + ")"));
+}
 
+// ================= BISECTION =================
 function solveBisection() {
-    let expr = document.getElementById("fx").value;
+    let expr = document.getElementById("fx").value.trim();
     let xl = parseFloat(document.getElementById("xl").value);
     let xu = parseFloat(document.getElementById("xu").value);
+    let result = document.getElementById("result");
 
     if (!expr || isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result").innerText = "Error";
+        result.innerText = "Enter valid inputs";
         return;
     }
 
@@ -48,84 +48,84 @@ function solveBisection() {
     for (let i = 0; i < 20; i++) {
         xr = (xl + xu) / 2;
 
-        let fxl = eval(expr.replace(/x/g, xl));
-        let fxr = eval(expr.replace(/x/g, xr));
+        let fl = calc(expr, xl);
+        let fr = calc(expr, xr);
 
-        if (fxl * fxr < 0) xu = xr;
-        else xl = xr;
+        if (fl * fr < 0) {
+            xu = xr;
+        } else {
+            xl = xr;
+        }
     }
 
-    document.getElementById("result").innerText = "Root = " + xr;
+    result.innerText = "Root = " + xr;
 }
 
 // ================= FALSE POSITION =================
-
 function solveFalsePosition() {
-    let expr = document.getElementById("fx2").value;
+    let expr = document.getElementById("fx2").value.trim();
     let xl = parseFloat(document.getElementById("xl2").value);
     let xu = parseFloat(document.getElementById("xu2").value);
+    let result = document.getElementById("result2");
 
     if (!expr || isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result2").innerText = "Error";
+        result.innerText = "Enter valid inputs";
         return;
     }
 
     let xr;
 
     for (let i = 0; i < 20; i++) {
-        let fxl = eval(expr.replace(/x/g, xl));
-        let fxu = eval(expr.replace(/x/g, xu));
+        let fl = calc(expr, xl);
+        let fu = calc(expr, xu);
 
-        xr = xu - (fxu * (xl - xu)) / (fxl - fxu);
+        if (fu - fl === 0) {
+            result.innerText = "Math Error";
+            return;
+        }
 
-        let fxr = eval(expr.replace(/x/g, xr));
+        xr = xu - (fu * (xl - xu)) / (fl - fu);
 
-        if (fxl * fxr < 0) xu = xr;
-        else xl = xr;
+        let fr = calc(expr, xr);
+
+        if (fl * fr < 0) {
+            xu = xr;
+        } else {
+            xl = xr;
+        }
     }
 
-    document.getElementById("result2").innerText = "Root = " + xr;
-}
-
-// ================= FIXED POINT =================
-
-function solveFixedPoint() {
-    let expr = document.getElementById("fx3").value;
-    let x = parseFloat(document.getElementById("x0").value);
-
-    if (!expr || isNaN(x)) {
-        document.getElementById("result3").innerText = "Error";
-        return;
-    }
-
-    for (let i = 0; i < 20; i++) {
-        x = eval(expr.replace(/x/g, x));
-    }
-
-    document.getElementById("result3").innerText = "Root = " + x;
+    result.innerText = "Root = " + xr;
 }
 
 // ================= NEWTON =================
-
 function solveNewton() {
-    let fexpr = document.getElementById("fx4").value;
-    let dfexpr = document.getElementById("dfx4").value;
+    let expr = document.getElementById("fx3").value.trim();
+    let dfx = document.getElementById("dfx").value.trim();
     let x = parseFloat(document.getElementById("x0n").value);
+    let result = document.getElementById("result3");
 
-    if (!fexpr || !dfexpr || isNaN(x)) {
-        document.getElementById("result4").innerText = "Error";
+    if (!expr || !dfx || isNaN(x)) {
+        result.innerText = "Enter valid inputs";
         return;
     }
 
-    for (let i = 0; i < 20; i++) {
-        let fx = eval(fexpr.replace(/x/g, x));
-        let dfx = eval(dfexpr.replace(/x/g, x));
+    for (let i = 0; i < 10; i++) {
+        let fx = calc(expr, x);
+        let dfxVal = calc(dfx, x);
 
-        x = x - (fx / dfx);
+        if (dfxVal === 0) {
+            result.innerText = "Math Error";
+            return;
+        }
+
+        x = x - fx / dfxVal;
     }
 
-    document.getElementById("result4").innerText = "Root = " + x;
+    result.innerText = "Root = " + x;
 }
+
+// ================= SECANT =================
 function solveSecant() {
     let expr = document.getElementById("fx5").value.trim();
     let x0 = parseFloat(document.getElementById("x0").value);
@@ -139,13 +139,8 @@ function solveSecant() {
 
     for (let i = 0; i < 10; i++) {
 
-        let f0 = eval(expr.replace(/x/g, "(" + x0 + ")"));
-        let f1 = eval(expr.replace(/x/g, "(" + x1 + ")"));
-
-        if (isNaN(f0) || isNaN(f1)) {
-            result.innerText = "Invalid function";
-            return;
-        }
+        let f0 = calc(expr, x0);
+        let f1 = calc(expr, x1);
 
         if (f1 - f0 === 0) {
             result.innerText = "Math Error";
@@ -159,5 +154,4 @@ function solveSecant() {
     }
 
     result.innerText = "Root = " + x1;
-}
 }
