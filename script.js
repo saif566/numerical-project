@@ -1,4 +1,4 @@
-
+// ================= SHOW FUNCTIONS =================
 
 function showBisection() {
     document.getElementById("bisectionBox").style.display = "block";
@@ -8,24 +8,23 @@ function showFalsePosition() {
     document.getElementById("falseBox").style.display = "block";
 }
 
-// ====== BISECTION METHOD ======
+function showFixedPoint() {
+    document.getElementById("fixedBox").style.display = "block";
+}
+
+function showNewton() {
+    document.getElementById("newtonBox").style.display = "block";
+}
+
+// ================= BISECTION =================
 
 function solveBisection() {
     let expr = document.getElementById("fx").value.trim();
-    let xl = document.getElementById("xl").value.trim();
-    let xu = document.getElementById("xu").value.trim();
+    let xl = parseFloat(document.getElementById("xl").value);
+    let xu = parseFloat(document.getElementById("xu").value);
 
-    // Validation
-    if (expr === "" || xl === "" || xu === "") {
-        document.getElementById("result").innerText = " Please fill in all fields";
-        return;
-    }
-
-    xl = parseFloat(xl);
-    xu = parseFloat(xu);
-
-    if (isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result").innerText = " xl and xu must be numbers";
+    if (!expr || isNaN(xl) || isNaN(xu)) {
+        document.getElementById("result").innerText = "Error in input";
         return;
     }
 
@@ -47,23 +46,15 @@ function solveBisection() {
     document.getElementById("result").innerText = "Root = " + xr;
 }
 
-// ====== FALSE POSITION METHOD ======
+// ================= FALSE POSITION =================
 
 function solveFalsePosition() {
     let expr = document.getElementById("fx2").value.trim();
-    let xl = document.getElementById("xl2").value.trim();
-    let xu = document.getElementById("xu2").value.trim();
+    let xl = parseFloat(document.getElementById("xl2").value);
+    let xu = parseFloat(document.getElementById("xu2").value);
 
-    if (expr === "" || xl === "" || xu === "") {
-        document.getElementById("result2").innerText = " Please fill in all fields";
-        return;
-    }
-
-    xl = parseFloat(xl);
-    xu = parseFloat(xu);
-
-    if (isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result2").innerText = " xl and xu must be numbers";
+    if (!expr || isNaN(xl) || isNaN(xu)) {
+        document.getElementById("result2").innerText = "Error in input";
         return;
     }
 
@@ -85,4 +76,50 @@ function solveFalsePosition() {
     }
 
     document.getElementById("result2").innerText = "Root = " + xr;
+}
+
+// ================= FIXED POINT =================
+
+function solveFixedPoint() {
+    let expr = document.getElementById("fx3").value.trim();
+    let x = parseFloat(document.getElementById("x0").value);
+
+    if (!expr || isNaN(x)) {
+        document.getElementById("result3").innerText = "Error in input";
+        return;
+    }
+
+    let next;
+
+    for (let i = 0; i < 20; i++) {
+        next = eval(expr.replace(/x/g, x));
+        x = next;
+    }
+
+    document.getElementById("result3").innerText = "Root = " + x;
+}
+
+// ================= NEWTON =================
+
+function solveNewton() {
+    let fexpr = document.getElementById("fx4").value.trim();
+    let dfexpr = document.getElementById("dfx4").value.trim();
+    let x = parseFloat(document.getElementById("x0n").value);
+
+    if (!fexpr || !dfexpr || isNaN(x)) {
+        document.getElementById("result4").innerText = "Error in input";
+        return;
+    }
+
+    let next;
+
+    for (let i = 0; i < 20; i++) {
+        let fx = eval(fexpr.replace(/x/g, x));
+        let dfx = eval(dfexpr.replace(/x/g, x));
+
+        next = x - (fx / dfx);
+        x = next;
+    }
+
+    document.getElementById("result4").innerText = "Root = " + x;
 }
