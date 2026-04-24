@@ -1,4 +1,4 @@
-// ===== SHOW FUNCTIONS =====
+// ================= SHOW / HIDE =================
 
 function hideAll() {
     document.getElementById("bisectionBox").style.display = "none";
@@ -27,7 +27,7 @@ function showNewton() {
     document.getElementById("newtonBox").style.display = "block";
 }
 
-// ===== BISECTION =====
+// ================= BISECTION =================
 
 function solveBisection() {
     let expr = fx.value;
@@ -54,7 +54,7 @@ function solveBisection() {
     result.innerText = "Root = " + xr;
 }
 
-// ===== FALSE POSITION =====
+// ================= FALSE POSITION =================
 
 function solveFalsePosition() {
     let expr = fx2.value;
@@ -83,7 +83,7 @@ function solveFalsePosition() {
     result2.innerText = "Root = " + xr;
 }
 
-// ===== FIXED POINT =====
+// ================= FIXED POINT =================
 
 function solveFixedPoint() {
     let expr = fx3.value;
@@ -101,7 +101,7 @@ function solveFixedPoint() {
     result3.innerText = "Root = " + x;
 }
 
-// ===== NEWTON =====
+// ================= NEWTON =================
 
 function solveNewton() {
     let fexpr = fx4.value;
@@ -121,4 +121,47 @@ function solveNewton() {
     }
 
     result4.innerText = "Root = " + x;
+}
+
+// ================= GRAPH =================
+
+let chart;
+
+function drawGraph() {
+    let expr = document.getElementById("graphFx").value;
+
+    if (!expr) {
+        alert("Enter function");
+        return;
+    }
+
+    let xValues = [];
+    let yValues = [];
+
+    for (let x = -10; x <= 10; x += 0.5) {
+        try {
+            let y = eval(expr.replace(/x/g, x));
+            xValues.push(x);
+            yValues.push(y);
+        } catch {
+            alert("Invalid function");
+            return;
+        }
+    }
+
+    if (chart) chart.destroy();
+
+    let ctx = document.getElementById("myChart");
+
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'f(x)',
+                data: yValues,
+                borderWidth: 2
+            }]
+        }
+    });
 }
