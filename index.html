@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Numerical Methods</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>Numerical Methods</h1>
+
 
 <button onclick="showBisection()">Bisection</button>
 
@@ -20,6 +20,23 @@
     <button onclick="solveBisection()">Solve</button>
 
     <p id="result" style="color:red; font-weight:bold;"></p>
+</div>
+
+<br><br>
+
+
+<button onclick="showFalsePosition()">False Position</button>
+
+<div id="falseBox" style="display:none;">
+    <h2>False Position Method</h2>
+
+    <input id="fx2" placeholder="f(x)">
+    <input id="xl2" placeholder="xl">
+    <input id="xu2" placeholder="xu">
+
+    <button onclick="solveFalsePosition()">Solve</button>
+
+    <p id="result2" style="color:red; font-weight:bold;"></p>
 </div>
 
 <script src="script.js"></script>
