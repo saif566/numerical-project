@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Optimization Methods</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Optimization Methods</h1>
+
+<a href="index.html">
+    <button>Back</button>
+</a>
+
+<!-- ===== GOLDEN SECTION ===== -->
+
+<h2>Golden Section</h2>
+
+<input id="fx" placeholder="f(x)">
+<input id="xl" placeholder="xl">
+<input id="xu" placeholder="xu">
+
+<button onclick="solveGolden()">Solve</button>
+
+<p id="result1"></p>
+
+<hr>
+
+<!-- ===== CONJUGATE GRADIENT ===== -->
+
+<h2>Conjugate Gradient (Simple)</h2>
+
+<input id="f2" placeholder="f(x) e.g x*x + 2*x">
+<input id="df2" placeholder="f'(x)">
+<input id="x0" placeholder="initial x">
+
+<button onclick="solveCG()">Solve</button>
+
+<p id="result2"></p>
+
+<script src="opt.js"></script>
+
+</body>
+</html>
