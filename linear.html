@@ -8,45 +8,46 @@
 
 <h1>Linear Methods</h1>
 
-
+<!-- Back Button -->
 <a href="index.html">
     <button>Back</button>
 </a>
 
 <h2>Enter Matrix (3x3)</h2>
 
-
+<!-- Row 1 -->
 <input id="a11" placeholder="a11">
 <input id="a12" placeholder="a12">
 <input id="a13" placeholder="a13">
 <input id="b1" placeholder="b1">
+<br><br>
 
-<br>
-
-
+<!-- Row 2 -->
 <input id="a21" placeholder="a21">
 <input id="a22" placeholder="a22">
 <input id="a23" placeholder="a23">
 <input id="b2" placeholder="b2">
+<br><br>
 
-<br>
-
-
+<!-- Row 3 -->
 <input id="a31" placeholder="a31">
 <input id="a32" placeholder="a32">
 <input id="a33" placeholder="a33">
 <input id="b3" placeholder="b3">
+<br><br>
+
+<!-- Buttons -->
+<button onclick="solveGaussian()">Gaussian Elimination</button>
+<button onclick="solveGaussJordan()">Gauss-Jordan</button>
+<button onclick="solveCramer()">Cramer’s Rule</button>
+<button onclick="solveLU()">LU Decomposition</button>
 
 <br><br>
 
-
-<button onclick="solveGaussian()">Gaussian</button>
-<button onclick="solveCramer()">Cramer</button>
-<button onclick="solveLU()">LU Decomposition</button>
-
-
+<!-- Result -->
 <p id="result" style="color:red; font-weight:bold;"></p>
 
+<!-- JS -->
 <script src="linear.js"></script>
 
 </body>
