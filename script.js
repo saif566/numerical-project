@@ -6,12 +6,30 @@ function hideAll() {
     document.getElementById("secantBox").style.display = "none";
     document.getElementById("fixedBox").style.display = "none";
 }
+function showBisection() {
+    hideAll();
+    document.getElementById("bisectionBox").style.display = "block";
+}
 
-function showBisection() { hideAll(); bisectionBox.style.display = "block"; }
-function showFalsePosition() { hideAll(); falseBox.style.display = "block"; }
-function showNewton() { hideAll(); newtonBox.style.display = "block"; }
-function showSecant() { hideAll(); secantBox.style.display = "block"; }
-function showFixed() { hideAll(); fixedBox.style.display = "block"; }
+function showFalsePosition() {
+    hideAll();
+    document.getElementById("falseBox").style.display = "block";
+}
+
+function showNewton() {
+    hideAll();
+    document.getElementById("newtonBox").style.display = "block";
+}
+
+function showSecant() {
+    hideAll();
+    document.getElementById("secantBox").style.display = "block";
+}
+
+function showFixed() {
+    hideAll();
+    document.getElementById("fixedBox").style.display = "block";
+}
 
 // ===== CALC =====
 function calc(expr, x) {
