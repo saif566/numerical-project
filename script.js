@@ -3,12 +3,22 @@ function showBisection() {
 }
 
 function solveBisection() {
-    let expr = document.getElementById("fx").value;
-    let xl = parseFloat(document.getElementById("xl").value);
-    let xu = parseFloat(document.getElementById("xu").value);
+    let expr = document.getElementById("fx").value.trim();
+    let xl = document.getElementById("xl").value.trim();
+    let xu = document.getElementById("xu").value.trim();
 
-    if (!expr || isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result").innerText = "Error in input";
+    // Validation: empty fields
+    if (expr === "" || xl === "" || xu === "") {
+        document.getElementById("result").innerText = " Please fill in all fields";
+        return;
+    }
+
+    xl = parseFloat(xl);
+    xu = parseFloat(xu);
+
+    // Validation: numbers only
+    if (isNaN(xl) || isNaN(xu)) {
+        document.getElementById("result").innerText = " xl and xu must be numbers";
         return;
     }
 
@@ -17,7 +27,10 @@ function solveBisection() {
     for (let i = 0; i < 20; i++) {
         xr = (xl + xu) / 2;
 
-        if (eval(expr.replaceAll("x", xl)) * eval(expr.replaceAll("x", xr)) < 0) {
+        let fxl = eval(expr.replace(/x/g, xl));
+        let fxr = eval(expr.replace(/x/g, xr));
+
+        if (fxl * fxr < 0) {
             xu = xr;
         } else {
             xl = xr;
