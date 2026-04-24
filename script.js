@@ -1,3 +1,6 @@
+function showBisection() {
+    document.getElementById("bisectionBox").style.display = "block";
+}
 function solveBisection() {
     let expr = document.getElementById("fx").value.trim();
     let xl = document.getElementById("xl").value.trim();
