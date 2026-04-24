@@ -127,16 +127,25 @@ function solveNewton() {
     document.getElementById("result4").innerText = "Root = " + x;
 }
 function solveSecant() {
-    let expr = document.getElementById("fx5").value;
+    let expr = document.getElementById("fx5").value.trim();
     let x0 = parseFloat(document.getElementById("x0").value);
     let x1 = parseFloat(document.getElementById("x1").value);
-
     let result = document.getElementById("result5");
+
+    if (!expr || isNaN(x0) || isNaN(x1)) {
+        result.innerText = "Enter valid inputs";
+        return;
+    }
 
     for (let i = 0; i < 10; i++) {
 
-        let f0 = eval(expr.replace(/x/g, x0));
-        let f1 = eval(expr.replace(/x/g, x1));
+        let f0 = eval(expr.replace(/x/g, "(" + x0 + ")"));
+        let f1 = eval(expr.replace(/x/g, "(" + x1 + ")"));
+
+        if (isNaN(f0) || isNaN(f1)) {
+            result.innerText = "Invalid function";
+            return;
+        }
 
         if (f1 - f0 === 0) {
             result.innerText = "Math Error";
@@ -150,4 +159,5 @@ function solveSecant() {
     }
 
     result.innerText = "Root = " + x1;
+}
 }
