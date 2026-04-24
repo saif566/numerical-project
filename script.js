@@ -26,6 +26,10 @@ function showNewton() {
     hideAll();
     document.getElementById("newtonBox").style.display = "block";
 }
+function showSecant() {
+    hideAll();
+    document.getElementById("secantBox").style.display = "block";
+}
 
 // ================= BISECTION =================
 
@@ -121,4 +125,28 @@ function solveNewton() {
     }
 
     document.getElementById("result4").innerText = "Root = " + x;
+}
+function solveSecant() {
+    let expr = document.getElementById("fx5").value;
+    let x0 = parseFloat(document.getElementById("x0s").value);
+    let x1 = parseFloat(document.getElementById("x1s").value);
+
+    if (!expr || isNaN(x0) || isNaN(x1)) {
+        document.getElementById("result5").innerText = "Error";
+        return;
+    }
+
+    let x2;
+
+    for (let i = 0; i < 20; i++) {
+        let f0 = eval(expr.replace(/x/g, x0));
+        let f1 = eval(expr.replace(/x/g, x1));
+
+        x2 = x1 - (f1 * (x1 - x0)) / (f1 - f0);
+
+        x0 = x1;
+        x1 = x2;
+    }
+
+    document.getElementById("result5").innerText = "Root = " + x2;
 }
