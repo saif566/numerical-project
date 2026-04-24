@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Numerical Methods</title>
+    <title>Numerical Methods Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>Numerical Methods</h1>
 
+<!-- ================= BUTTONS ================= -->
 
 <button onclick="showBisection()">Bisection</button>
+<button onclick="showFalsePosition()">False Position</button>
+<button onclick="showFixedPoint()">Fixed Point</button>
+<button onclick="showNewton()">Newton</button>
+
+<!-- ================= BISECTION ================= -->
 
 <div id="bisectionBox" style="display:none;">
     <h2>Bisection Method</h2>
@@ -20,13 +26,10 @@
 
     <button onclick="solveBisection()">Solve</button>
 
-    <p id="result" style="color:red; font-weight:bold;"></p>
+    <p id="result"></p>
 </div>
 
-<br><br>
-
-
-<button onclick="showFalsePosition()">False Position</button>
+<!-- ================= FALSE POSITION ================= -->
 
 <div id="falseBox" style="display:none;">
     <h2>False Position Method</h2>
@@ -37,7 +40,34 @@
 
     <button onclick="solveFalsePosition()">Solve</button>
 
-    <p id="result2" style="color:red; font-weight:bold;"></p>
+    <p id="result2"></p>
+</div>
+
+<!-- ================= FIXED POINT ================= -->
+
+<div id="fixedBox" style="display:none;">
+    <h2>Fixed Point Method</h2>
+
+    <input id="fx3" placeholder="g(x)">
+    <input id="x0" placeholder="initial x">
+
+    <button onclick="solveFixedPoint()">Solve</button>
+
+    <p id="result3"></p>
+</div>
+
+<!-- ================= NEWTON ================= -->
+
+<div id="newtonBox" style="display:none;">
+    <h2>Newton Method</h2>
+
+    <input id="fx4" placeholder="f(x)">
+    <input id="dfx4" placeholder="f'(x)">
+    <input id="x0n" placeholder="initial x">
+
+    <button onclick="solveNewton()">Solve</button>
+
+    <p id="result4"></p>
 </div>
 
 <script src="script.js"></script>
