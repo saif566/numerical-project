@@ -139,23 +139,29 @@ function solveSecant() {
         return;
     }
 
-    for (let i = 0; i < 10; i++) {
+    let x2;
 
+    for (let i = 0; i < 10; i++) {
         let f0 = calc(expr, x0);
         let f1 = calc(expr, x1);
+
+        if (isNaN(f0) || isNaN(f1)) {
+            result.innerText = "Invalid function";
+            return;
+        }
 
         if (f1 - f0 === 0) {
             result.innerText = "Math Error";
             return;
         }
 
-        let x2 = x1 - (f1 * (x1 - x0)) / (f1 - f0);
+        x2 = x1 - (f1 * (x1 - x0)) / (f1 - f0);
 
         x0 = x1;
         x1 = x2;
     }
 
-    result.innerText = "Root = " + x1;
+    result.innerText = "Root = " + x2;
 }
 
 // ===== FIXED POINT =====
