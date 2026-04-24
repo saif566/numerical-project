@@ -1,23 +1,14 @@
 function showBisection() {
     document.getElementById("bisectionBox").style.display = "block";
 }
+
 function solveBisection() {
-    let expr = document.getElementById("fx").value.trim();
-    let xl = document.getElementById("xl").value.trim();
-    let xu = document.getElementById("xu").value.trim();
+    let expr = document.getElementById("fx").value;
+    let xl = parseFloat(document.getElementById("xl").value);
+    let xu = parseFloat(document.getElementById("xu").value);
 
-    // Validation: empty fields
-    if (expr === "" || xl === "" || xu === "") {
-        document.getElementById("result").innerText = "❌ Please fill in all fields";
-        return;
-    }
-
-    xl = parseFloat(xl);
-    xu = parseFloat(xu);
-
-    // Validation: numbers only
-    if (isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result").innerText = "❌ xl and xu must be numbers";
+    if (!expr || isNaN(xl) || isNaN(xu)) {
+        document.getElementById("result").innerText = "Error in input";
         return;
     }
 
