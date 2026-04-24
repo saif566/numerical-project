@@ -30,12 +30,12 @@ function showNewton() {
 // ================= BISECTION =================
 
 function solveBisection() {
-    let expr = fx.value;
+    let expr = document.getElementById("fx").value;
     let xl = parseFloat(document.getElementById("xl").value);
     let xu = parseFloat(document.getElementById("xu").value);
 
     if (!expr || isNaN(xl) || isNaN(xu)) {
-        result.innerText = "Error";
+        document.getElementById("result").innerText = "Error";
         return;
     }
 
@@ -51,18 +51,18 @@ function solveBisection() {
         else xl = xr;
     }
 
-    result.innerText = "Root = " + xr;
+    document.getElementById("result").innerText = "Root = " + xr;
 }
 
 // ================= FALSE POSITION =================
 
 function solveFalsePosition() {
-    let expr = fx2.value;
-    let xl = parseFloat(xl2.value);
-    let xu = parseFloat(xu2.value);
+    let expr = document.getElementById("fx2").value;
+    let xl = parseFloat(document.getElementById("xl2").value);
+    let xu = parseFloat(document.getElementById("xu2").value);
 
     if (!expr || isNaN(xl) || isNaN(xu)) {
-        result2.innerText = "Error";
+        document.getElementById("result2").innerText = "Error";
         return;
     }
 
@@ -80,17 +80,17 @@ function solveFalsePosition() {
         else xl = xr;
     }
 
-    result2.innerText = "Root = " + xr;
+    document.getElementById("result2").innerText = "Root = " + xr;
 }
 
 // ================= FIXED POINT =================
 
 function solveFixedPoint() {
-    let expr = fx3.value;
-    let x = parseFloat(x0.value);
+    let expr = document.getElementById("fx3").value;
+    let x = parseFloat(document.getElementById("x0").value);
 
     if (!expr || isNaN(x)) {
-        result3.innerText = "Error";
+        document.getElementById("result3").innerText = "Error";
         return;
     }
 
@@ -98,18 +98,18 @@ function solveFixedPoint() {
         x = eval(expr.replace(/x/g, x));
     }
 
-    result3.innerText = "Root = " + x;
+    document.getElementById("result3").innerText = "Root = " + x;
 }
 
 // ================= NEWTON =================
 
 function solveNewton() {
-    let fexpr = fx4.value;
-    let dfexpr = dfx4.value;
-    let x = parseFloat(x0n.value);
+    let fexpr = document.getElementById("fx4").value;
+    let dfexpr = document.getElementById("dfx4").value;
+    let x = parseFloat(document.getElementById("x0n").value);
 
     if (!fexpr || !dfexpr || isNaN(x)) {
-        result4.innerText = "Error";
+        document.getElementById("result4").innerText = "Error";
         return;
     }
 
@@ -120,48 +120,5 @@ function solveNewton() {
         x = x - (fx / dfx);
     }
 
-    result4.innerText = "Root = " + x;
-}
-
-// ================= GRAPH =================
-
-let chart;
-
-function drawGraph() {
-    let expr = document.getElementById("graphFx").value;
-
-    if (!expr) {
-        alert("Enter function");
-        return;
-    }
-
-    let xValues = [];
-    let yValues = [];
-
-    for (let x = -10; x <= 10; x += 0.5) {
-        try {
-            let y = eval(expr.replace(/x/g, x));
-            xValues.push(x);
-            yValues.push(y);
-        } catch {
-            alert("Invalid function");
-            return;
-        }
-    }
-
-    if (chart) chart.destroy();
-
-    let ctx = document.getElementById("myChart");
-
-    chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: xValues,
-            datasets: [{
-                label: 'f(x)',
-                data: yValues,
-                borderWidth: 2
-            }]
-        }
-    });
+    document.getElementById("result4").innerText = "Root = " + x;
 }
