@@ -1,72 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Numerical Methods Project</title>
+    <title>Numerical Methods</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>Numerical Methods</h1>
 
-<!-- ================= BUTTONS ================= -->
-
+<!-- ===== BUTTONS ===== -->
 <button onclick="showBisection()">Bisection</button>
 <button onclick="showFalsePosition()">False Position</button>
 <button onclick="showFixedPoint()">Fixed Point</button>
 <button onclick="showNewton()">Newton</button>
 
-<!-- ================= BISECTION ================= -->
-
+<!-- ===== BISECTION ===== -->
 <div id="bisectionBox" style="display:none;">
-    <h2>Bisection Method</h2>
-
+    <h2>Bisection</h2>
     <input id="fx" placeholder="f(x)">
     <input id="xl" placeholder="xl">
     <input id="xu" placeholder="xu">
-
     <button onclick="solveBisection()">Solve</button>
-
     <p id="result"></p>
 </div>
 
-<!-- ================= FALSE POSITION ================= -->
-
+<!-- ===== FALSE POSITION ===== -->
 <div id="falseBox" style="display:none;">
-    <h2>False Position Method</h2>
-
+    <h2>False Position</h2>
     <input id="fx2" placeholder="f(x)">
     <input id="xl2" placeholder="xl">
     <input id="xu2" placeholder="xu">
-
     <button onclick="solveFalsePosition()">Solve</button>
-
     <p id="result2"></p>
 </div>
 
-<!-- ================= FIXED POINT ================= -->
-
+<!-- ===== FIXED POINT ===== -->
 <div id="fixedBox" style="display:none;">
-    <h2>Fixed Point Method</h2>
-
+    <h2>Fixed Point</h2>
     <input id="fx3" placeholder="g(x)">
     <input id="x0" placeholder="initial x">
-
     <button onclick="solveFixedPoint()">Solve</button>
-
     <p id="result3"></p>
 </div>
 
-<!-- ================= NEWTON ================= -->
-
+<!-- ===== NEWTON ===== -->
 <div id="newtonBox" style="display:none;">
-    <h2>Newton Method</h2>
-
+    <h2>Newton</h2>
     <input id="fx4" placeholder="f(x)">
     <input id="dfx4" placeholder="f'(x)">
     <input id="x0n" placeholder="initial x">
-
     <button onclick="solveNewton()">Solve</button>
-
     <p id="result4"></p>
 </div>
 
