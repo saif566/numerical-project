@@ -1,4 +1,4 @@
-// ====== SHOW FUNCTIONS ======
+
 
 function showBisection() {
     document.getElementById("bisectionBox").style.display = "block";
@@ -17,7 +17,7 @@ function solveBisection() {
 
     // Validation
     if (expr === "" || xl === "" || xu === "") {
-        document.getElementById("result").innerText = "❌ Please fill in all fields";
+        document.getElementById("result").innerText = " Please fill in all fields";
         return;
     }
 
@@ -25,7 +25,7 @@ function solveBisection() {
     xu = parseFloat(xu);
 
     if (isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result").innerText = "❌ xl and xu must be numbers";
+        document.getElementById("result").innerText = " xl and xu must be numbers";
         return;
     }
 
@@ -54,9 +54,8 @@ function solveFalsePosition() {
     let xl = document.getElementById("xl2").value.trim();
     let xu = document.getElementById("xu2").value.trim();
 
-    // Validation
     if (expr === "" || xl === "" || xu === "") {
-        document.getElementById("result2").innerText = "❌ Please fill in all fields";
+        document.getElementById("result2").innerText = " Please fill in all fields";
         return;
     }
 
@@ -64,7 +63,7 @@ function solveFalsePosition() {
     xu = parseFloat(xu);
 
     if (isNaN(xl) || isNaN(xu)) {
-        document.getElementById("result2").innerText = "❌ xl and xu must be numbers";
+        document.getElementById("result2").innerText = " xl and xu must be numbers";
         return;
     }
 
