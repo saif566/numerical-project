@@ -1,6 +1,7 @@
 // ===== GOLDEN SECTION =====
 function solveGolden() {
-    let expr = fx.value;
+  let expr = document.getElementById("fx").value;
+let result1 = document.getElementById("result1");
     let xl = parseFloat(document.getElementById("xl").value);
     let xu = parseFloat(document.getElementById("xu").value);
 
